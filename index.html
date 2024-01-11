@@ -1,0 +1,506 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="css/leaflet-measure.css">
+        <style>
+        html, body, #map {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/multi-style-layer.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="js/leaflet-measure.js"></script>
+        <script src="data/Viasdecomunicacion_1.js"></script>
+        <script src="data/SitiosdeSalud_2.js"></script>
+        <script src="data/EscuelasHaiti_3.js"></script>
+        <script src="data/Comunas_4.js"></script>
+        <script src="data/Aeropuertos_5.js"></script>
+        <script src="data/Comunasdeestudio_6.js"></script>
+        <script src="data/IglesiasHaiti_7.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[18.11525131522481,-73.24092602832637],[19.088692455225242,-71.36934510233398]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+        var measureControl = new L.Control.Measure({
+            position: 'topleft',
+            primaryLengthUnit: 'meters',
+            secondaryLengthUnit: 'kilometers',
+            primaryAreaUnit: 'sqmeters',
+            secondaryAreaUnit: 'hectares'
+        });
+        measureControl.addTo(map);
+        document.getElementsByClassName('leaflet-control-measure-toggle')[0]
+        .innerHTML = '';
+        document.getElementsByClassName('leaflet-control-measure-toggle')[0]
+        .className += ' fas fa-ruler';
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+        }
+        map.createPane('pane_Positronretina_0');
+        map.getPane('pane_Positronretina_0').style.zIndex = 400;
+        var layer_Positronretina_0 = L.tileLayer('https://a.basemaps.cartocdn.com/light_all/{z}/{x}/{y}@2x.png', {
+            pane: 'pane_Positronretina_0',
+            opacity: 1.0,
+            attribution: '<a href="https://cartodb.com/basemaps/">Map tiles by CartoDB, under CC BY 3.0. Data by OpenStreetMap, under ODbL.</a>',
+            minZoom: 1,
+            maxZoom: 28,
+            minNativeZoom: 0,
+            maxNativeZoom: 20
+        });
+        layer_Positronretina_0;
+        map.addLayer(layer_Positronretina_0);
+        function pop_Viasdecomunicacion_1(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['name'] !== null ? autolinker.link(feature.properties['name'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['type'] !== null ? autolinker.link(feature.properties['type'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Viasdecomunicacion_1_0() {
+            return {
+                pane: 'pane_Viasdecomunicacion_1',
+                opacity: 1,
+                color: 'rgba(250,255,57,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 3.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Viasdecomunicacion_1');
+        map.getPane('pane_Viasdecomunicacion_1').style.zIndex = 401;
+        map.getPane('pane_Viasdecomunicacion_1').style['mix-blend-mode'] = 'normal';
+        var layer_Viasdecomunicacion_1 = new L.geoJson(json_Viasdecomunicacion_1, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Viasdecomunicacion_1',
+            layerName: 'layer_Viasdecomunicacion_1',
+            pane: 'pane_Viasdecomunicacion_1',
+            onEachFeature: pop_Viasdecomunicacion_1,
+            style: style_Viasdecomunicacion_1_0,
+        });
+        bounds_group.addLayer(layer_Viasdecomunicacion_1);
+        map.addLayer(layer_Viasdecomunicacion_1);
+        function pop_SitiosdeSalud_2(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2"><strong>amenity</strong><br />' + (feature.properties['amenity'] !== null ? autolinker.link(feature.properties['amenity'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>name</strong><br />' + (feature.properties['name'] !== null ? autolinker.link(feature.properties['name'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_SitiosdeSalud_2_0(feature) {
+            switch(String(feature.properties['amenity'])) {
+                case 'clinic':
+                    return {
+                pane: 'pane_SitiosdeSalud_2',
+                radius: 4.0,
+                stroke: false,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(204,12,191,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'dentist':
+                    return {
+                pane: 'pane_SitiosdeSalud_2',
+                radius: 4.0,
+                stroke: false,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(225,236,68,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'doctors':
+                    return {
+                pane: 'pane_SitiosdeSalud_2',
+                radius: 4.0,
+                stroke: false,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(138,239,145,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'hospital':
+                    return {
+                pane: 'pane_SitiosdeSalud_2',
+                radius: 4.0,
+                stroke: false,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(90,196,204,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'pharmacy':
+                    return {
+                pane: 'pane_SitiosdeSalud_2',
+                radius: 4.0,
+                stroke: false,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(92,84,210,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'place_of_worship':
+                    return {
+                pane: 'pane_SitiosdeSalud_2',
+                radius: 4.0,
+                stroke: false,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(219,44,32,1.0)',
+                interactive: true,
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_SitiosdeSalud_2');
+        map.getPane('pane_SitiosdeSalud_2').style.zIndex = 402;
+        map.getPane('pane_SitiosdeSalud_2').style['mix-blend-mode'] = 'normal';
+        var layer_SitiosdeSalud_2 = new L.geoJson(json_SitiosdeSalud_2, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_SitiosdeSalud_2',
+            layerName: 'layer_SitiosdeSalud_2',
+            pane: 'pane_SitiosdeSalud_2',
+            onEachFeature: pop_SitiosdeSalud_2,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_SitiosdeSalud_2_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_SitiosdeSalud_2);
+        map.addLayer(layer_SitiosdeSalud_2);
+        function pop_EscuelasHaiti_3(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2"><strong>name</strong><br />' + (feature.properties['name'] !== null ? autolinker.link(feature.properties['name'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Type</strong><br />' + (feature.properties['amenity'] !== null ? autolinker.link(feature.properties['amenity'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_EscuelasHaiti_3_0(feature) {
+            switch(String(feature.properties['amenity'])) {
+                case 'kindergarten':
+                    return {
+                pane: 'pane_EscuelasHaiti_3',
+                radius: 2.0,
+                stroke: false,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(230,180,115,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'school':
+                    return {
+                pane: 'pane_EscuelasHaiti_3',
+                radius: 2.0,
+                stroke: false,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(153,43,238,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'college':
+                    return {
+                pane: 'pane_EscuelasHaiti_3',
+                radius: 2.0,
+                stroke: false,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(114,205,166,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'university':
+                    return {
+                pane: 'pane_EscuelasHaiti_3',
+                radius: 2.0,
+                stroke: false,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(177,238,130,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'library':
+                    return {
+                pane: 'pane_EscuelasHaiti_3',
+                radius: 2.0,
+                stroke: false,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(25,101,200,1.0)',
+                interactive: true,
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_EscuelasHaiti_3');
+        map.getPane('pane_EscuelasHaiti_3').style.zIndex = 403;
+        map.getPane('pane_EscuelasHaiti_3').style['mix-blend-mode'] = 'normal';
+        var layer_EscuelasHaiti_3 = new L.geoJson(json_EscuelasHaiti_3, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_EscuelasHaiti_3',
+            layerName: 'layer_EscuelasHaiti_3',
+            pane: 'pane_EscuelasHaiti_3',
+            onEachFeature: pop_EscuelasHaiti_3,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_EscuelasHaiti_3_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_EscuelasHaiti_3);
+        map.addLayer(layer_EscuelasHaiti_3);
+        function pop_Comunas_4(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2"><strong>Commune</strong><br />' + (feature.properties['commune'] !== null ? autolinker.link(feature.properties['commune'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Departement</strong><br />' + (feature.properties['departemen'] !== null ? autolinker.link(feature.properties['departemen'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Population</strong><br />' + (feature.properties['DN_sum'] !== null ? autolinker.link(feature.properties['DN_sum'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Comunas_4_0() {
+            return {
+                pane: 'pane_Comunas_4',
+                opacity: 1,
+                color: 'rgba(0,0,0,0.8)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1, 
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Comunas_4');
+        map.getPane('pane_Comunas_4').style.zIndex = 404;
+        map.getPane('pane_Comunas_4').style['mix-blend-mode'] = 'normal';
+        var layer_Comunas_4 = new L.geoJson(json_Comunas_4, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Comunas_4',
+            layerName: 'layer_Comunas_4',
+            pane: 'pane_Comunas_4',
+            onEachFeature: pop_Comunas_4,
+            style: style_Comunas_4_0,
+        });
+        bounds_group.addLayer(layer_Comunas_4);
+        map.addLayer(layer_Comunas_4);
+        function pop_Aeropuertos_5(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2"><strong>Airport Name</strong><br />' + (feature.properties['APTNAME'] !== null ? autolinker.link(feature.properties['APTNAME'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Aeropuertos_5_0() {
+            return {
+                pane: 'pane_Aeropuertos_5',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/transport_airport.svg',
+            iconSize: [22.799999999999997, 22.799999999999997]
+        }),
+                interactive: true,
+            }
+        }
+        function style_Aeropuertos_5_1() {
+            return {
+                pane: 'pane_Aeropuertos_5',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/transport_airport.svg',
+            iconSize: [22.799999999999997, 22.799999999999997]
+        }),
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Aeropuertos_5');
+        map.getPane('pane_Aeropuertos_5').style.zIndex = 405;
+        map.getPane('pane_Aeropuertos_5').style['mix-blend-mode'] = 'normal';
+        var layer_Aeropuertos_5 = new L.geoJson.multiStyle(json_Aeropuertos_5, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Aeropuertos_5',
+            layerName: 'layer_Aeropuertos_5',
+            pane: 'pane_Aeropuertos_5',
+            onEachFeature: pop_Aeropuertos_5,
+            pointToLayers: [function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.marker(latlng, style_Aeropuertos_5_0(feature));
+            },function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.marker(latlng, style_Aeropuertos_5_1(feature));
+            },
+        ]});
+        bounds_group.addLayer(layer_Aeropuertos_5);
+        map.addLayer(layer_Aeropuertos_5);
+        function pop_Comunasdeestudio_6(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2"><strong>ID Section</strong><br />' + (feature.properties['no_section'] !== null ? autolinker.link(feature.properties['no_section'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Section</strong><br />' + (feature.properties['section_'] !== null ? autolinker.link(feature.properties['section_'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>commune</strong><br />' + (feature.properties['commune'] !== null ? autolinker.link(feature.properties['commune'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Comunasdeestudio_6_0() {
+            return {
+                pane: 'pane_Comunasdeestudio_6',
+                opacity: 1,
+                color: 'rgba(228,26,28,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 1.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Comunasdeestudio_6');
+        map.getPane('pane_Comunasdeestudio_6').style.zIndex = 406;
+        map.getPane('pane_Comunasdeestudio_6').style['mix-blend-mode'] = 'normal';
+        var layer_Comunasdeestudio_6 = new L.geoJson(json_Comunasdeestudio_6, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Comunasdeestudio_6',
+            layerName: 'layer_Comunasdeestudio_6',
+            pane: 'pane_Comunasdeestudio_6',
+            onEachFeature: pop_Comunasdeestudio_6,
+            style: style_Comunasdeestudio_6_0,
+        });
+        bounds_group.addLayer(layer_Comunasdeestudio_6);
+        map.addLayer(layer_Comunasdeestudio_6);
+        function pop_IglesiasHaiti_7(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2"><strong>name</strong><br />' + (feature.properties['name'] !== null ? autolinker.link(feature.properties['name'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>type</strong><br />' + (feature.properties['type'] !== null ? autolinker.link(feature.properties['type'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_IglesiasHaiti_7_0() {
+            return {
+                pane: 'pane_IglesiasHaiti_7',
+                radius: 3.0,
+                opacity: 1,
+                color: 'rgba(179,93,142,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(242,125,191,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_IglesiasHaiti_7');
+        map.getPane('pane_IglesiasHaiti_7').style.zIndex = 407;
+        map.getPane('pane_IglesiasHaiti_7').style['mix-blend-mode'] = 'normal';
+        var layer_IglesiasHaiti_7 = new L.geoJson(json_IglesiasHaiti_7, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_IglesiasHaiti_7',
+            layerName: 'layer_IglesiasHaiti_7',
+            pane: 'pane_IglesiasHaiti_7',
+            onEachFeature: pop_IglesiasHaiti_7,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_IglesiasHaiti_7_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_IglesiasHaiti_7);
+        map.addLayer(layer_IglesiasHaiti_7);
+        var baseMaps = {};
+        L.control.layers(baseMaps,{'<img src="legend/IglesiasHaiti_7.png" /> Iglesias Haiti': layer_IglesiasHaiti_7,'<img src="legend/Comunasdeestudio_6.png" /> Comunas de estudio': layer_Comunasdeestudio_6,'<img src="legend/Aeropuertos_5.png" /> Aeropuertos': layer_Aeropuertos_5,'<img src="legend/Comunas_4.png" /> Comunas': layer_Comunas_4,'Escuelas Haiti<br /><table><tr><td style="text-align: center;"><img src="legend/EscuelasHaiti_3_kindergarten0.png" /></td><td>kindergarten</td></tr><tr><td style="text-align: center;"><img src="legend/EscuelasHaiti_3_school1.png" /></td><td>school</td></tr><tr><td style="text-align: center;"><img src="legend/EscuelasHaiti_3_college2.png" /></td><td>college</td></tr><tr><td style="text-align: center;"><img src="legend/EscuelasHaiti_3_university3.png" /></td><td>university</td></tr><tr><td style="text-align: center;"><img src="legend/EscuelasHaiti_3_library4.png" /></td><td>library</td></tr></table>': layer_EscuelasHaiti_3,'Sitios de Salud<br /><table><tr><td style="text-align: center;"><img src="legend/SitiosdeSalud_2_clinic0.png" /></td><td>clinic</td></tr><tr><td style="text-align: center;"><img src="legend/SitiosdeSalud_2_dentist1.png" /></td><td>dentist</td></tr><tr><td style="text-align: center;"><img src="legend/SitiosdeSalud_2_doctors2.png" /></td><td>doctors</td></tr><tr><td style="text-align: center;"><img src="legend/SitiosdeSalud_2_hospital3.png" /></td><td>hospital</td></tr><tr><td style="text-align: center;"><img src="legend/SitiosdeSalud_2_pharmacy4.png" /></td><td>pharmacy</td></tr><tr><td style="text-align: center;"><img src="legend/SitiosdeSalud_2_placeofworship5.png" /></td><td>place_of_worship</td></tr></table>': layer_SitiosdeSalud_2,'<img src="legend/Viasdecomunicacion_1.png" /> Vias de comunicacion': layer_Viasdecomunicacion_1,"Positron (retina)": layer_Positronretina_0,},{collapsed:false}).addTo(map);
+        setBounds();
+        </script>
+    </body>
+</html>
